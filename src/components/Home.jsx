@@ -14,12 +14,13 @@ const Home = () => {
     date: "",
   });
 
+  // ✅ BASE URL
+  const BASE_URL = "https://crud-app-backend-jade.vercel.app";
+
   // ✅ FETCH BOOKS (READ)
   const fetchBooks = async () => {
     try {
-      const res = await axios.get(
-        "https://crud-app-backend-jade.vercel.app/api/books"
-      );
+      const res = await axios.get(`${BASE_URL}/api/books`);
       setBooks(res.data);
     } catch (err) {
       console.error("Error fetching books:", err);
@@ -41,12 +42,10 @@ const Home = () => {
 
     try {
       if (editId) {
-        // Update existing book
-        await axios.put(`http://localhost:5000/api/books/${editId}`, formData);
+        await axios.put(`${BASE_URL}/api/books/${editId}`, formData);
         setEditId(null);
       } else {
-        // Add new book
-        await axios.post("http://localhost:5000/api/books", formData);
+        await axios.post(`${BASE_URL}/api/books`, formData);
       }
 
       setFormData({
@@ -78,7 +77,7 @@ const Home = () => {
   // ✅ HANDLE DELETE
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/books/${id}`);
+      await axios.delete(`${BASE_URL}/api/books/${id}`);
       fetchBooks();
     } catch (err) {
       console.error("Error deleting book:", err);
