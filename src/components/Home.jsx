@@ -17,7 +17,9 @@ const Home = () => {
   // ✅ FETCH BOOKS (READ)
   const fetchBooks = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/books");
+      const res = await axios.get(
+        "https://crud-app-backend-jade.vercel.app/api/books"
+      );
       setBooks(res.data);
     } catch (err) {
       console.error("Error fetching books:", err);
